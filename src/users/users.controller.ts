@@ -22,19 +22,18 @@ export class UsersController {
     }
 
     @UseGuards(AuthGuard)
-    @Get(':id')
-    async getById(@Param('id') id: string): Promise<UserDocument> {
-        return this.usersService.findOneById(id);
-    }
-
-    @UseGuards(AuthGuard)
-    @Get('/balance')
+    @Get('balance')
     async getUserBalance(@Request() req): Promise<number> {
         return this.usersService.getUserBalance(req.user.sub);
     }
 
     @UseGuards(AuthGuard)
-    @Put('/balance')
+    @Get(':id')
+    async getById(@Param('id') id: string): Promise<UserDocument> {
+        return this.usersService.findOneById(id);
+    }
+    @UseGuards(AuthGuard)
+    @Put('balance')
     async updateUserBalance(@Request() req, @Body() updateBalanceDto: UpdateBalanceDto): Promise<void> {
         return this.usersService.updateUserBalance(req.user.sub, updateBalanceDto);
     }

@@ -25,7 +25,7 @@ export class UsersService {
             throw new NotFoundException();
         }
 
-        return foundUser.balance ?? 0;
+        return foundUser.balance;
     }
 
     async updateUserBalance(userId: string, updateBalanceDto: UpdateBalanceDto): Promise<void> {
