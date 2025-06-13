@@ -47,15 +47,9 @@ export class GroupsController {
     }
 
     @UseGuards(AuthGuard)
-    @Post(':id/transaction/create')
+    @Post(':id/transaction')
     async addTransaction(@Request() req, @Param('id') id: string, @Body() createGroupTransactionDto: CreateGroupTransactionDto): Promise<void> {
         return this.groupsService.addTransaction(req.user.sub, id, createGroupTransactionDto);
-    }
-
-    @UseGuards(AuthGuard)
-    @Post(':id/transaction/remove/:transactionId')
-    async removeTransaction(@Request() req, @Param('id') id: string, @Param('transactionId') transactionId: string): Promise<void> {
-        return this.groupsService.removeTransaction(req.user.sub, id, transactionId);
     }
 
     @UseGuards(AuthGuard)

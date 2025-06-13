@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { User, UserDocument } from 'src/users/schemas/user.schema';
+import { UserDocument } from 'src/users/schemas/user.schema';
 import { GroupTransaction } from './group-transaction.schema';
 
 export type GroupDocument = HydratedDocument<Group>;
@@ -18,6 +18,9 @@ export class Group {
 
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
     owner: UserDocument;
+
+    @Prop({ default: 0 })
+    balance: number;
 
     @Prop({ type: [GroupTransaction], default: [] })
     transactions: GroupTransaction[];

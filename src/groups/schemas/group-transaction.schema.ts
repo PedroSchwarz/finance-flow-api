@@ -9,6 +9,9 @@ export class GroupTransaction {
     @Prop({ required: true })
     amount: number;
 
+    @Prop({ required: true })
+    type: string;
+
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
     owner: UserDocument;
 
